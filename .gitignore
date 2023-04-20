@@ -1,0 +1,38 @@
+# Java class files
+*.class
+
+# Eclipse project files
+.classpath
+.project
+
+# Intellij project files
+*.ipr
+*.iws
+.idea/*
+!.idea/runConfigurations/
+*.iml
+
+#Gradle
+.gradletasknamecache
+.gradle/
+build/
+bin/
+
+#Logs
+*.log
+*.log.*
+
+target/
+results/
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+# Archived files
+.jar
+.war
+.zip
+.rar

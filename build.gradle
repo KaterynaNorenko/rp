@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+    maven {
+        url "https://dl.bintray.com/epam/reportportal"
+    }
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.8.2'
+    testImplementation 'io.cucumber:cucumber-java:7.11.1'
+    testImplementation 'io.cucumber:cucumber-junit:7.11.1'
+    testImplementation 'io.cucumber:cucumber-plugin:7.11.2'
+    testImplementation 'org.assertj:assertj-core:3.21.0'
+    testImplementation 'commons-io:commons-io:2.11.0'
+    testImplementation 'com.epam.reportportal:commons-model:5.1.0'
+    testImplementation 'com.epam.reportportal:agent-java-cucumber6:5.1.3'
+    testImplementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    testImplementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
+}
+
+sourceSets {
+    src {
+        test {
+            java {
+                srcDirs = ['src/test']
+            }
+        }
+    }
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task runAllTests(type: Test, dependsOn: compileTestJava) {
+    doLast {
+        include 'runner/TestRunner*'
+    }
+}
