@@ -6,11 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.Optional;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 public class DriverManager {
     private static final String CHROME_DRIVER_PATH_MAC_OS = "src/test/resources/chromedriver";
-    private static final String CHROME_DRIVER_PATH_WINDOWS = "src/test/resources/chromedriver.exe";
+    private static final String CHROME_DRIVER_PATH_LINUX = "/usr/local/bin/chromedriver";
     private static final Duration IMPLICIT_WAIT_TIMEOUT = Duration.ofSeconds(10);
     private static final Duration PAGE_LOAD_TIMEOUT = Duration.ofSeconds(60);
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
@@ -19,8 +17,8 @@ public class DriverManager {
     }
 
     public static void setupDriver() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("os.name").contains("Windows")
-                                                      ? CHROME_DRIVER_PATH_WINDOWS
+        System.setProperty("webdriver.chrome.driver", System.getProperty("os.name").contains("Linux")
+                                                      ? CHROME_DRIVER_PATH_LINUX
                                                       : CHROME_DRIVER_PATH_MAC_OS);
         WebDriver driver = new ChromeDriver(Capabilities.getChromeOptions());
         driver.manage().window().maximize();
