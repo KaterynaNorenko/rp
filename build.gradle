@@ -58,37 +58,3 @@ task runAllTests(type: Test) {
         include 'runner/TestRunner*'
     }
 }
-
-//dockerCompose{
-//    useComposeFiles.add("docker-compose.yaml")
-//}
-
-//dockerCompose {
-//    isStopContainers = false
-//}
-task runAllTestsDocker(type: Exec){
-    workingDir './src'
-    executable 'docker-compose'
-    args(['-f', '../docker-compose.yml', 'run', '--name', 'cucumber-suite'])
-}
-
-if (hasProperty('buildScan')) {
-    buildScan {
-        termsOfServiceUrl = 'https://gradle.com/terms-of-service'
-        termsOfServiceAgree = 'yes'
-    }
-}
-//
-//static def cucumberCommand(Map kwargs = [:]){
-//    def mode = kwargs.mode
-//
-//    def args = ['cucumber']
-//
-//    if (mode != null) {
-//        args += ["MODE=${mode}"]
-//    }
-//
-//    args += ['--strict', '--format', 'pretty', '--format', 'html', '--out']
-//
-//    return args
-//}
