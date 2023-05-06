@@ -66,6 +66,6 @@ sonarqube {
         property("sonar.projectName", "rp")
         property("sonar.login", "admin")
         property("sonar.password", "sonar")
-        property("sonar.host.url", "http://ui:9000")
+        property("sonar.host.url", "http://sonarqube:9000")
     }
 }
